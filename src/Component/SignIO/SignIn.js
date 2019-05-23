@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import { Text, View } from 'react-native'
- 
-export default class CheckAlert extends Component{
+export default class HomeScreen extends Component{
     render(){
         return(
             <View>
-                <Text>man hinh CheckAlert</Text>
+                <Text>man hinh HOMESCREEN</Text>
             </View>
         );
     }
