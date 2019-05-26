@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, TextInput, Image, StatusBar } from 'react-native'
 import HomeScreen   from './Component/HomeScreen/HomeScreen'
 import Drawer from './Navigation/Navigation'
+import Bottom from './Navigation/Navigation'
 export default class App extends Component {
     render() {
         return (
