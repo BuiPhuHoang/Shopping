@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput, Image, StatusBar } from 'react-native'
-import HomeScreen   from './Component/HomeScreen/HomeScreen'
-import Drawer from './Navigation/Navigation'
-import Bottom from './Navigation/Navigation'
+import { Text, View, TextInput, Image, StatusBar, Dimensions } from 'react-native'
+import Home from './Component/Main/Home'
+import  Drawer  from './Navigation/Navigation'
+import HeaderMain from './Component/Main/HeaderMain'
+const {width, height}= Dimensions.get('window')
 export default class App extends Component {
+
     render() {
         return (
-            <View style={{ backgroundColor: 'green', flex:1 }}>
-               <Drawer />
+            <View style={{ flex:1 }}>
+                <View style={{height:height/8}}>
+
+                </View>                     
+                <Drawer />                
             </View>
         );
     }
