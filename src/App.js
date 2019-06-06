@@ -5,7 +5,8 @@ import {
   TextInput,
   Image,
   StatusBar,
-  Dimensions
+  Dimensions,
+  SafeAreaView
 } from 'react-native';
 import Home from './Component/Main/Home';
 import Drawer from './Navigation/Navigation';
@@ -14,10 +15,9 @@ const { width, height } = Dimensions.get('window');
 export default class App extends Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <View style={{ height: height / 8 }} />
+      <SafeAreaView style={{ flex: 1 }}>
         <Drawer />
-      </View>
+      </SafeAreaView>
     );
   }
 }
