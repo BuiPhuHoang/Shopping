@@ -1,5 +1,5 @@
-const Icon ={
-  logo:{
+export const Icon = {
+  logo: {
     require()
   }
 }

@@ -15,7 +15,7 @@ const { width, height } = Dimensions.get('window');
 export default class App extends Component {
   render() {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#21AF8B' }}>
         <Drawer />
       </SafeAreaView>
     );

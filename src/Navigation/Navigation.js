@@ -5,7 +5,7 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  TextInput
+  TextInput, Dimensions
 } from 'react-native';
 import Home from '../Component/Main/Home';
 import Cart from '../Component/Main/Cart';
@@ -19,8 +19,11 @@ import {
   createAppContainer,
   createBottomTabNavigator,
   createDrawerNavigator,
-  createStackNavigator
+  createStackNavigator,
+  DrawerActions
 } from 'react-navigation';
+import { ScrollView } from 'react-native-gesture-handler';
+const { width, height } = Dimensions.get('screen')
 
 // const StackHome = createStackNavigator({
 //   Home
@@ -40,34 +43,108 @@ import {
 // });
 
 const Bottom = createBottomTabNavigator({
-  // StackHome: {
-  //   screen: StackHome
-  // },
-  // StackCart: {
-  //   screen: StackCart
-  // },
-  // StackSearch: {
-  //   screen: StackSearch
-  // },
-  // StackContact: {
-  //   screen: StackContact
-  // }
   Home,
   Cart,
   Search,
-  Contact
-});
+  Contact,
+  UserInfor,
+  OrderHistory
+},
+  {
+    tabBarOptions: {
+      activeTintColor: 'red',
+      activeBackgroundColor: 'red'
+    },
+
+    tabBarComponent: (props) => {
+      return (
+        <View style={{ height: 50, padding: 15, backgroundColor: 'white', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate('Home')
+            }}
+          >
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <Image
+                source={require('../media/appIcon/home0.png')}
+                style={{ width: 20, height: 20 }}
+              />
+              <Text>Home</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate('Cart')
+            }}
+          >
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <Image
+                source={require('../media/appIcon/cart0.png')}
+                style={{ width: 20, height: 20 }}
+              />
+              <Text>Cart</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate('Search')
+            }}
+          >
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <Image
+                source={require('../media/appIcon/search0.png')}
+                style={{ width: 20, height: 20 }}
+              />
+              <Text>Search</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate('Contact')
+            }}
+          >
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <Image
+                source={require('../media/appIcon/contact0.png')}
+                style={{ width: 20, height: 20 }}
+              />
+              <Text>Contact</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      )
+    },
+  }
+);
 const StackDepZai = createStackNavigator(
   {
     Bottom
   },
+
   {
-    defaultNavigationOptions: () => ({
+    defaultNavigationOptions: (props) => ({
       header: (
-        <View style={{ flex: 1, borderWidth: 1, height: 50 }}>
+        <View style={{ flex: 1, height: height / 9, backgroundColor: '#21AF8B', paddingHorizontal: 10 }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 7 }}>
+            <TouchableOpacity
+              onPress={() => {
+                props.navigation.dispatch(DrawerActions.openDrawer())
+              }}
+            >
+              <Image
+                source={require('../media/appIcon/ic_menu.png')}
+                style={{ width: 25, height: 25 }}
+              />
+            </TouchableOpacity>
+            <Text style={{ fontSize: 25, color: 'white' }}>Wearing a Dress</Text>
+            <Image
+              source={require('../media/appIcon/ic_logo.png')}
+              style={{ width: 25, height: 25 }}
+            />
+          </View>
           <TextInput
-            style={{ width: 100, height: 50 }}
-            placeholder="ahihi do ngoc"
+            style={{ width: '100%', height: 40, backgroundColor: 'white', padding: 8 }}
+            placeholder="What do you want to buy?"
           />
         </View>
       )
@@ -81,6 +158,7 @@ export const Drawer = createDrawerNavigator(
     }
   },
   {
+    drawerWidth: width * 0.6,
     contentComponent: props => {
       return (
         <View style={{ flex: 1, backgroundColor: '#21AF8B' }}>
@@ -94,11 +172,60 @@ export const Drawer = createDrawerNavigator(
             />
           </View>
           <View style={styles.bodyDrawer}>
-            <TouchableOpacity
-              onPress={() => {
-                props.navigation.navigate('');
-              }}
-            />
+            <ScrollView style={{ width: '100%' }}>
+              <View style={{ width: '100%' }}>
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate('OrderHistory');
+                    props.navigation.dispatch(DrawerActions.closeDrawer())
+
+                  }}
+                  style={{ marginBottom: 10 }}
+                >
+                  <View style={{
+                    width: '100%', height: height / 15,
+                    justifyContent: 'center', alignItems: 'center', backgroundColor: '#fffae5',
+                    borderRadius: 10
+                  }}>
+                    <Text>Order History</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+              <View style={{ width: '100%' }}>
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate('UserInfor');
+                    props.navigation.dispatch(DrawerActions.closeDrawer())
+                  }}
+                  style={{ marginBottom: 10 }}
+                >
+                  <View style={{
+                    width: '100%', height: height / 15,
+                    justifyContent: 'center', alignItems: 'center', backgroundColor: '#fffae5',
+                    borderRadius: 10
+                  }}>
+                    <Text>Change Infor</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+
+              <View style={{ width: '100%' }}>
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate('ChangeInfor');
+                    props.navigation.dispatch(DrawerActions.closeDrawer())
+                  }}
+                >
+                  <View style={{
+                    width: '100%', height: height / 15,
+                    justifyContent: 'center', alignItems: 'center', backgroundColor: '#fffae5',
+                    borderRadius: 10
+                  }}>
+                    <Text>Sing Out</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </ScrollView>
           </View>
         </View>
       );
@@ -106,11 +233,13 @@ export const Drawer = createDrawerNavigator(
   }
 );
 export default createAppContainer(Drawer);
+
 const styles = StyleSheet.create({
   avata: { justifyContent: 'center', alignItems: 'center', flex: 3 },
   bodyDrawer: {
     justifyContent: 'center',
     alignItems: 'center',
+    margin: 10,
     flex: 7
   }
 });
