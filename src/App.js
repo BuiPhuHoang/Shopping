@@ -16,13 +16,14 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
 const defaulValue = {
-  Value: 0, HighLight: false
+  Value: 0, HighLight: false, reset: 0
 }
 
 const reducer = (state = defaulValue, action) => {
-  if (action.tyle === 'UP') return { Value: state.Value + 1, HighLight: !state.HighLight }
-  if (action.tyle === 'DOWN') return { Value: state.Value - 1, HighLight: state.HighLight }
-  if (action.tyle === 'CHANGE_COLOR') return { Value: state.Value, HighLight: !state.HighLight }
+  if (action.type === 'UP') return { Value: state.Value + 1, HighLight: !state.HighLight, reset: 0 }
+  if (action.type === 'DOWN') return { Value: state.Value - 1, HighLight: state.HighLight, reset: 0 }
+  if (action.type === 'CHANGE_COLOR') return { Value: state.Value, HighLight: !state.HighLight, reset: 0 }
+  if (action.type === 'reset') return { Value: state.reset, HighLight: state.HighLight, reset: 0 }
   return state;
 }
 const store = createStore(reducer)

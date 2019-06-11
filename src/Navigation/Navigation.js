@@ -117,6 +117,26 @@ export const Drawer = createDrawerNavigator(
               <View style={{ width: '100%' }}>
                 <TouchableOpacity
                   onPress={() => {
+                    props.navigation.navigate('Home');
+                    props.navigation.dispatch(DrawerActions.closeDrawer());
+                  }}
+                  style={{ marginBottom: 10 }}
+                >
+                  <View
+                    style={{
+                      width: '100%',
+                      height: height / 15,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      backgroundColor: '#fffae5',
+                      borderRadius: 10
+                    }}
+                  >
+                    <Text>Home</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
                     props.navigation.navigate('OrderHistory');
                     props.navigation.dispatch(DrawerActions.closeDrawer());
                   }}
