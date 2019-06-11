@@ -12,7 +12,10 @@
     "react-native-gesture-handler": "^1.2.1",
     "react-native-swiper": "^1.5.14",
     "react-navigation": "^3.11.0",
+<<<<<<< HEAD
     "react-redux": "^7.1.0",
+=======
+>>>>>>> f900888f21cde4b9baca17b9fbc8b9739e8654e3
     "redux": "^4.0.1"
   },
   "devDependencies": {
