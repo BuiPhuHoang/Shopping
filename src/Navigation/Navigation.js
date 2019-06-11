@@ -25,23 +25,6 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 const { width, height } = Dimensions.get('screen')
 
-// const StackHome = createStackNavigator({
-//   Home
-// });
-
-// const StackHome = createStackNavigator({
-//   Home
-// });
-// const StackCart = createStackNavigator({
-//   Cart
-// });
-// const StackSearch = createStackNavigator({
-//   Search
-// });
-// const StackContact = createStackNavigator({
-//   Contact
-// });
-
 const Bottom = createBottomTabNavigator({
   Home,
   Cart,
